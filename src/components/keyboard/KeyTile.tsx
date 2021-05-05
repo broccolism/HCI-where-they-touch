@@ -5,24 +5,37 @@ import { SizeProps } from "../../models/propTypes";
 
 interface KeyTileProps {
   letter: string;
+  total: string;
 }
 
 function KeyTile(props: KeyTileProps & SizeProps) {
-  const handleTouch = (e: any) => {};
+  const handleTouch = (e: any) => {
+    const pageX = Math.floor(e.touches[0].pageX);
+    const pageY = Math.floor(e.touches[0].pageY);
+    console.log("@@@@", pageX, pageY, props.letter);
+  };
+
   return (
-    <Square
+    <Background
+      onTouchStart={handleTouch}
       width={props.width}
       height={props.height}
-      padding={props.padding}
-      margin={props.margin}
-      onTouchStart={handleTouch}
+      total={props.total}
     >
-      {props.letter}
-    </Square>
+      <Foreground
+        width={props.width}
+        height={props.height}
+        padding={props.padding}
+        margin={props.margin}
+      >
+        {props.letter}
+      </Foreground>
+    </Background>
   );
 }
 
-const Square = styled.div<SizeProps>`
+const Foreground = styled.div<SizeProps>`
+  position: absolute;
   width: ${(props) => props.width ?? "auto"};
   height: ${(props) => props.height ?? "auto"};
   padding: ${(props) => props.padding ?? "0px"};
@@ -30,5 +43,20 @@ const Square = styled.div<SizeProps>`
 
   background-color: ${keyboardColors.white};
   border-radius: 4px;
+  text-align: center;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direciton: row;
+  align-items: center;
+  justify-content: center;
+`;
+
+const Background = styled.div<SizeProps & { total: string }>`
+  position: relative;
+  width: ${(props) => props.width ?? "auto"};
+  height: ${(props) => props.height ?? "auto"};
+  padding: ${(props) => props.total};
+  margin: 0px;
 `;
 export default KeyTile;

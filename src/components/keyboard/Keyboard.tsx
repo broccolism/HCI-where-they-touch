@@ -12,7 +12,16 @@ function Keyboard() {
           return (
             <Row>
               {row.map((letter: string) => {
-                return <KeyTile letter={letter} padding="4px" margin="2px" />;
+                return (
+                  <KeyTile
+                    letter={letter}
+                    width="24px"
+                    height="32px"
+                    padding="3px"
+                    margin="3px"
+                    total="10px 6px"
+                  />
+                );
               })}
             </Row>
           );
@@ -24,6 +33,7 @@ function Keyboard() {
 
 const Wrapper = styled.div`
   width: 350px;
+  padding: 4px 10px;
   background-color: ${keyboardColors.grayLight};
 `;
 
