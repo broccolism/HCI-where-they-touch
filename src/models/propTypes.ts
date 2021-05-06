@@ -4,3 +4,10 @@ export interface SizeProps {
   padding?: string;
   margin?: string;
 }
+
+type AxisType = "start" | "center" | "end" | "flex-end";
+
+export interface AxisProps {
+  mainAxisAlignment?: AxisType;
+  crossAxisAlignment?: AxisType;
+}

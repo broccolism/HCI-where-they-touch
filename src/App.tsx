@@ -1,16 +1,30 @@
 import React from "react";
-import Keyboard from "./components/keyboard/Keyboard";
-import TouchDetector from "./components/TouchDetector";
-import logo from "./logo.svg";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import styled from "styled-components";
+import StepIndicator from "./components/layout/StepIndicator";
+import { StyeldEmptyDiv } from "./components/layout/StyledComponents";
+import { CustomPath } from "./constants/path";
+import HomePage from "./pages/HomePage";
 
 function App() {
   return (
-    <div style={{ position: "relative" }}>
-      <div>haha</div>
-      {/* <TouchDetector width="300px" height="3000px" /> */}
-      <Keyboard />
-    </div>
+    <MobileWrapper>
+      <BrowserRouter>
+        <StyeldEmptyDiv height="32px" />
+        <StepIndicator />
+        <StyeldEmptyDiv height="18px" />
+        <Switch>
+          <Route path={CustomPath.HOME}>
+            <HomePage />
+          </Route>
+        </Switch>
+      </BrowserRouter>
+    </MobileWrapper>
   );
 }
+
+const MobileWrapper = styled.div`
+  margin-left: 20px;
+`;
 
 export default App;
