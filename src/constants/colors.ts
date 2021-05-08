@@ -4,4 +4,5 @@ export const keyboardColors = {
   gray: "#8C8C8C",
   black: "#000000",
   red: "#FF7A6D",
+  blue: "#008FFF",
 };

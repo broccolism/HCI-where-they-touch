@@ -9,6 +9,7 @@ import HomePage from "./pages/HomePage";
 import KeyboardTestPage from "./pages/KeyboardTestPage";
 import NoticePage from "./pages/NoticePage";
 import QuestionPage from "./pages/QuestionPage";
+import ResultPage from "./pages/ResultPage";
 
 function App() {
   return (
@@ -18,6 +19,9 @@ function App() {
         <StepIndicator />
         <StyeldEmptyDiv height="18px" />
         <Switch>
+          <Route path={CustomPath.RESULT}>
+            <ResultPage />
+          </Route>
           <Route path={CustomPath.QUESTION}>
             <QuestionPage />
           </Route>
