@@ -42,7 +42,8 @@ function ResultPage() {
           <StyeldEmptyDiv height="12px" />
           <StyledColumn>
             {userAnswers.map((input: string, index: number) => {
-              const answer = testWords[index].word;
+              const word = testWords[index].word;
+              const answer = testWords[index].answer;
               return (
                 <StyledRow
                   width="80vw"
@@ -53,7 +54,7 @@ function ResultPage() {
                     padding: "4px 0px",
                   }}
                 >
-                  <Answer>{answer}</Answer>
+                  <Answer>{word}</Answer>
                   {answer === input ? (
                     <BlueText>{input}</BlueText>
                   ) : (
