@@ -87,6 +87,8 @@ function ResultPage() {
             <StyledColumn crossAxisAlignment="flex-end">
               <AiOutlineGithub size="40px" />
               <StyeldEmptyDiv height="8px" />
+              @broccolism
+              <br />
               만든 이가 뭐하는 사람인지 보러가기
             </StyledColumn>
           </MailWrapper>
