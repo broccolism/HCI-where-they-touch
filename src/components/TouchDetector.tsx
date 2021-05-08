@@ -1,20 +1,22 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import styled from "styled-components";
 import { SizeProps } from "../models/propTypes";
 
-function TouchDetector({ width, height }: SizeProps) {
-  const handleTouch = (e: any) => {
-    console.log("@@@", e.touches[0].pageY);
-    const pageX = e.touches[0].pageX;
-    const pageY = e.touches[0].pageY;
-    window.alert(`You just touched ${pageX}, ${pageY}`);
-  };
+interface DetectorProps {
+  handleTouch: (e: any) => void;
+  children: ReactNode;
+}
+
+function TouchDetector({
+  width,
+  height,
+  handleTouch,
+  children,
+}: SizeProps & DetectorProps) {
   return (
-    <Container
-      width={width}
-      height={height}
-      onTouchStart={handleTouch}
-    ></Container>
+    <Container width={width} height={height} onTouchStart={handleTouch}>
+      {children}
+    </Container>
   );
 }
 
@@ -23,10 +25,14 @@ const Container = styled.div<SizeProps>`
   height: ${(props) => props.height ?? "auto"};
   background-color: #abcdef;
   z-index: 2;
-  position: absolute;
+  position: relative;
   top: 0;
   left: 0;
   opacity: 0.5;
+  border: 1px solid #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 export default TouchDetector;

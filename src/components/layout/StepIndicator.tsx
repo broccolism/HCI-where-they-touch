@@ -20,7 +20,7 @@ function StepIndicator() {
 const ProgressBar = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: start;
+  justify-content: center;
   margin-top: 12px;
 
   div {
