@@ -2,14 +2,18 @@ import styled from "styled-components";
 import { keyboardColors } from "../../constants/colors";
 import { AxisProps, SizeProps } from "../../models/propTypes";
 
-export const StyledColumn = styled.div<AxisProps>`
+export const StyledColumn = styled.div<AxisProps & SizeProps>`
+  width: ${(props) => props.width ?? "auto"};
+  height: ${(props) => props.height ?? "auto"};
   display: flex;
   flex-direction: column;
   align-items: ${(props) => props.crossAxisAlignment ?? "center"};
   justify-content: ${(props) => props.mainAxisAlignment};
 `;
 
-export const StyledRow = styled.div<AxisProps>`
+export const StyledRow = styled.div<AxisProps & SizeProps>`
+  width: ${(props) => props.width ?? "auto"};
+  height: ${(props) => props.height ?? "auto"};
   display: flex;
   flex-direction: row;
   align-items: ${(props) => props.crossAxisAlignment};
@@ -23,6 +27,7 @@ export const StyeldEmptyDiv = styled.div<SizeProps>`
 `;
 
 export const IconWrapper = styled.div`
+  text-align: center;
   font-size: 48px;
 `;
 
@@ -45,5 +50,6 @@ export const Accent = styled.span`
 
 export const Content = styled.div<SizeProps>`
   width: ${(props) => props.width ?? "auto"};
+  font-size: 16px;
   line-height: 1.4;
 `;

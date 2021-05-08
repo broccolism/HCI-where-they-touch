@@ -1,11 +1,12 @@
 import { Cookies } from "react-cookie";
 import { CookieName, CustomPath } from "../constants/path";
+import { testWords } from "../constants/testContents";
 import { ScreenSize, UserTouch } from "../models/dataTypes";
 
 const cookie = new Cookies();
 
 export const setInitCookie = () => {
-  cookie.set(CookieName.TOUCHES, [], { path: "/" });
+  localStorage.setItem(CookieName.TOUCHES, JSON.stringify([]));
 };
 
 export const setScreenSizeCookie = (width: number, height: number) => {
@@ -13,15 +14,33 @@ export const setScreenSizeCookie = (width: number, height: number) => {
     width: width,
     height: height,
   };
-  cookie.set(CookieName.SIZE, size, { path: "/" });
+  localStorage.setItem(CookieName.SIZE, JSON.stringify(size));
 };
 
-export const getScreenSizeCookie = () => {
-  return cookie.get(CookieName.SIZE);
+export const getTouchesForResultCookie = () => {
+  const history = JSON.parse(localStorage.getItem(CookieName.TOUCHES)!);
+
+  let letters = history
+    .map((item: UserTouch) => item.content)
+    .filter((content: string) => content.length === 1);
+  let i = 0;
+  const lettersPerWords = testWords.map((word) => {
+    return letters.splice(i, i + word.length);
+  });
+  const userInputsPerWords = lettersPerWords.map((arr: string[]) => {
+    return arr.join("");
+  });
+  return userInputsPerWords;
+};
+
+export const addTouchCookie = (e: any, content: string) => {
+  const touch: UserTouch = makeTouchObj(e, content);
+  const newCookie = getAccTouchCookie().concat(touch);
+  localStorage.setItem(CookieName.TOUCHES, JSON.stringify(newCookie));
 };
 
 const getAccTouchCookie = () => {
-  return cookie.get(CookieName.TOUCHES);
+  return JSON.parse(localStorage.getItem(CookieName.TOUCHES)!);
 };
 
 const makeTouchObj = (e: any, content: string): UserTouch => {
@@ -37,12 +56,13 @@ const makeTouchObj = (e: any, content: string): UserTouch => {
   return touch;
 };
 
-export const addTouchCookie = (e: any, content: string) => {
-  const touch: UserTouch = makeTouchObj(e, content);
-  const newCookie = getAccTouchCookie().concat(touch);
-  cookie.set(CookieName.TOUCHES, newCookie, { path: "/" });
-};
-
 export const getAllCookie = () => {
-  return cookie.getAll();
+  let history = [];
+  history.push({
+    key: CookieName.TOUCHES,
+    data: JSON.parse(localStorage[CookieName.TOUCHES]),
+  });
+  history.push({ key: CookieName.SIZE, data: localStorage[CookieName.SIZE] });
+
+  return history;
 };

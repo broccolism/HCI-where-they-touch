@@ -5,7 +5,7 @@ export interface SizeProps {
   margin?: string;
 }
 
-type AxisType = "start" | "center" | "end" | "flex-end";
+type AxisType = "start" | "center" | "end" | "flex-end" | "space-between";
 
 export interface AxisProps {
   mainAxisAlignment?: AxisType;

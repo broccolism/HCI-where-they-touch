@@ -11,11 +11,11 @@ import {
 import { addTouchCookie, setInitCookie } from "../apis/cookie";
 import { CustomPath } from "../constants/path";
 import TouchDetector from "../components/TouchDetector";
-import { isButton } from "../constants/cookie";
+import { ButtonNames } from "../constants/cookie";
 
 function HomePage() {
   const handleTouch = (e: any) => {
-    addTouchCookie(e, isButton);
+    addTouchCookie(e, ButtonNames.HOME_START);
     window.location.assign(CustomPath.NOTICE);
   };
 

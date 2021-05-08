@@ -10,13 +10,13 @@ import {
 } from "../components/layout/StyledComponents";
 import TouchDetector from "../components/TouchDetector";
 import { keyboardColors } from "../constants/colors";
-import { isButton } from "../constants/cookie";
+import { ButtonNames } from "../constants/cookie";
 import { CustomPath } from "../constants/path";
 import { testWords } from "../constants/testContents";
 
 function NoticePage() {
   const handleTouch = (e: any) => {
-    addTouchCookie(e, isButton);
+    addTouchCookie(e, ButtonNames.NOTICE_START);
     window.location.assign(CustomPath.KEYBOARD + testWords[0].hash);
   };
 

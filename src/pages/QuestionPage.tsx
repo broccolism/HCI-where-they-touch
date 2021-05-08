@@ -11,7 +11,7 @@ import {
 } from "../components/layout/StyledComponents";
 import TouchDetector from "../components/TouchDetector";
 import { keyboardColors } from "../constants/colors";
-import { isButton } from "../constants/cookie";
+import { ButtonNames } from "../constants/cookie";
 import { CustomPath } from "../constants/path";
 import { AnswerFieldName, Answers } from "../models/dataTypes";
 
@@ -23,7 +23,7 @@ function QuestionPage() {
   });
 
   const handleTouch = (e: any) => {
-    addTouchCookie(e, isButton);
+    addTouchCookie(e, e.target.name + ButtonNames.BUTTON_TAG);
   };
 
   const handleAnswer = (e: any) => {
@@ -35,7 +35,7 @@ function QuestionPage() {
   };
 
   const handleTouchGoNext = (e: any) => {
-    addTouchCookie(e, isButton);
+    addTouchCookie(e, ButtonNames.QUESTION_NEXT);
     window.location.assign(CustomPath.RESULT);
   };
 
@@ -87,7 +87,7 @@ function QuestionPage() {
           <RadioGroup
             style={{ width: "100%", padding: "0px 20px" }}
             aria-label="position"
-            name="gender"
+            name="t-type"
             onChange={handleAnswer}
           >
             <FormControlLabel
