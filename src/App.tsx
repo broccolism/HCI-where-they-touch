@@ -4,12 +4,11 @@ import styled from "styled-components";
 import { addTouchCookie, getAllCookie } from "./apis/cookie";
 import StepIndicator from "./components/layout/StepIndicator";
 import { StyeldEmptyDiv } from "./components/layout/StyledComponents";
-import TouchDetector from "./components/TouchDetector";
 import { CustomPath } from "./constants/path";
-import { UserTouch } from "./models/dataTypes";
 import HomePage from "./pages/HomePage";
 import KeyboardTestPage from "./pages/KeyboardTestPage";
 import NoticePage from "./pages/NoticePage";
+import QuestionPage from "./pages/QuestionPage";
 
 function App() {
   return (
@@ -19,6 +18,9 @@ function App() {
         <StepIndicator />
         <StyeldEmptyDiv height="18px" />
         <Switch>
+          <Route path={CustomPath.QUESTION}>
+            <QuestionPage />
+          </Route>
           <Route path={CustomPath.KEYBOARD}>
             <KeyboardTestPage />
           </Route>

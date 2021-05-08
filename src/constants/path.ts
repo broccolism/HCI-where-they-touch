@@ -2,7 +2,7 @@ export enum CustomPath {
   HOME = "/",
   NOTICE = "/notice",
   KEYBOARD = "/keyboard",
-  CHECKBOX = "/check",
+  QUESTION = "/question",
   RESULT = "/result",
 }
 

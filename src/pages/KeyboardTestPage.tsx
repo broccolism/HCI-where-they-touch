@@ -21,9 +21,11 @@ function KeyboardTestPage() {
     const testWordLength = testWords[step].length;
     if (newInput.length === testWordLength) {
       if (step === lastWordStep) {
-        window.location.assign(CustomPath.CHECKBOX);
+        window.location.assign(CustomPath.QUESTION);
       } else {
-        setStep((step + 1) as TestWordStep);
+        const newStep = (step + 1) as TestWordStep;
+        window.location.assign(CustomPath.KEYBOARD + testWords[newStep].hash);
+        setStep(newStep);
         setInput("");
       }
     } else {
