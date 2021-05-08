@@ -6,18 +6,13 @@ import { SizeProps } from "../../models/propTypes";
 interface KeyTileProps {
   letter: string;
   total: string;
+  onTypping: (e: any, letter: string) => void;
 }
 
 function KeyTile(props: KeyTileProps & SizeProps) {
-  const handleTouch = (e: any) => {
-    const pageX = Math.floor(e.touches[0].pageX);
-    const pageY = Math.floor(e.touches[0].pageY);
-    console.log("@@@@", pageX, pageY, props.letter);
-  };
-
   return (
     <Background
-      onTouchStart={handleTouch}
+      onTouchStart={(e: any) => props.onTypping(e, props.letter)}
       width={props.width}
       height={props.height}
       total={props.total}

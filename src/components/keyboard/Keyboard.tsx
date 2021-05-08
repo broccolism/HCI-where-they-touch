@@ -4,7 +4,11 @@ import { keyboardColors } from "../../constants/colors";
 import { keyLetters } from "../../constants/keyLetters";
 import KeyTile from "./KeyTile";
 
-function Keyboard() {
+interface KeyboardProps {
+  onTypping: (e: any, letter: string) => void;
+}
+
+function Keyboard({ onTypping }: KeyboardProps) {
   return (
     <Wrapper>
       <Column>
@@ -14,6 +18,7 @@ function Keyboard() {
               {row.map((letter: string) => {
                 return (
                   <KeyTile
+                    onTypping={onTypping}
                     letter={letter}
                     width="24px"
                     height="32px"

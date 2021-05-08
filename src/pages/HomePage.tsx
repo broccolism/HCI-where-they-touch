@@ -8,13 +8,14 @@ import {
   SubTitle,
   Title,
 } from "../components/layout/StyledComponents";
-import { addTouchCookie, getAllCookie, setInitCookie } from "../apis/cookie";
+import { addTouchCookie, setInitCookie } from "../apis/cookie";
 import { CustomPath } from "../constants/path";
 import TouchDetector from "../components/TouchDetector";
+import { isButton } from "../constants/cookie";
 
 function HomePage() {
   const handleTouch = (e: any) => {
-    addTouchCookie(e);
+    addTouchCookie(e, isButton);
     window.location.assign(CustomPath.NOTICE);
   };
 
@@ -26,8 +27,8 @@ function HomePage() {
     <StyledColumn>
       <IconWrapper>⌨️</IconWrapper>
       <StyeldEmptyDiv height="18px" />
-      <SubTitle>스마트폰 사용량에 따른 타이핑 정확도 연구</SubTitle>
-      <Title>얼마나 잘 입력하나요?</Title>
+      <SubTitle>얼마나 잘 입력하나요?</SubTitle>
+      <Title>좀 이상한 타자연습</Title>
       <StyeldEmptyDiv height="36px" />
       <Content>
         어렸을 때 학교에서 많이 해봤던 타자연습!

@@ -8,4 +8,5 @@ export interface UserTouch {
   pageX: number;
   pageY: number;
   createdAt: Date;
+  content: string;
 }

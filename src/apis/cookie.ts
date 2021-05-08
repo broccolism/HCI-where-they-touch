@@ -24,7 +24,7 @@ const getAccTouchCookie = () => {
   return cookie.get(CookieName.TOUCHES);
 };
 
-const makeTouchObj = (e: any): UserTouch => {
+const makeTouchObj = (e: any, content: string): UserTouch => {
   const pageX = e.touches[0].pageX;
   const pageY = e.touches[0].pageY;
   const touch: UserTouch = {
@@ -32,12 +32,13 @@ const makeTouchObj = (e: any): UserTouch => {
     pageY: Math.round(pageY),
     path: window.location.pathname + window.location.hash,
     createdAt: new Date(),
+    content: content,
   };
   return touch;
 };
 
-export const addTouchCookie = (e: any) => {
-  const touch: UserTouch = makeTouchObj(e);
+export const addTouchCookie = (e: any, content: string) => {
+  const touch: UserTouch = makeTouchObj(e, content);
   const newCookie = getAccTouchCookie().concat(touch);
   cookie.set(CookieName.TOUCHES, newCookie, { path: "/" });
 };
