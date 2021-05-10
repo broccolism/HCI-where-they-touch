@@ -5,14 +5,14 @@ import { ScreenSize, UserTouch } from "../models/dataTypes";
 
 const cookie = new Cookies();
 
-export const setInitCookie = () => {
+export const setInitTouchesCookie = () => {
   localStorage.setItem(CookieName.TOUCHES, JSON.stringify([]));
 };
 
-export const setScreenSizeCookie = (width: number, height: number) => {
+export const setScreenSizeCookie = () => {
   const size: ScreenSize = {
-    width: width,
-    height: height,
+    width: window.innerWidth,
+    height: window.innerHeight,
   };
   localStorage.setItem(CookieName.SIZE, JSON.stringify(size));
 };

@@ -8,7 +8,11 @@ import {
   SubTitle,
   Title,
 } from "../components/layout/StyledComponents";
-import { addTouchCookie, setInitCookie } from "../apis/cookie";
+import {
+  addTouchCookie,
+  setInitTouchesCookie,
+  setScreenSizeCookie,
+} from "../apis/cookie";
 import { CustomPath } from "../constants/path";
 import TouchDetector from "../components/TouchDetector";
 import { ButtonNames } from "../constants/cookie";
@@ -20,7 +24,8 @@ function HomePage() {
   };
 
   useEffect(() => {
-    setInitCookie();
+    setInitTouchesCookie();
+    setScreenSizeCookie();
   }, []);
 
   return (
@@ -52,4 +57,5 @@ const TextButton = styled.div`
   text-align: center;
   padding: 5vh 30vw;
 `;
+
 export default HomePage;
