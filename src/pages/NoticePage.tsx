@@ -28,7 +28,7 @@ function NoticePage() {
         수정할 수 없어요
       </Title>
       <StyeldEmptyDiv height="32px" />
-      <Content width="80%">
+      <Content>
         보다 정확한 측정을 위해
         <Accent> 스마트폰의 기존 키보드와 글자를 지우는 키</Accent>는 쓸 수
         없습니다.
@@ -52,13 +52,13 @@ export default NoticePage;
 
 const FilledButton = styled.div`
   width: 80px;
-  height: 80px;
+  height: 60px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: ${keyboardColors.white};
   font-weight: bold;
-  border-radius: 80px;
+  border-radius: 16px;
   letter-spacing: 2px;
   background-color: ${keyboardColors.black};
 `;

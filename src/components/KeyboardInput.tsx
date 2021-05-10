@@ -26,7 +26,7 @@ function KeyboardInput({ value, onTypping }: Props) {
 }
 
 const FakeInputField = styled.div`
-  width: 90vw;
+  width: 280px;
   height: 24px;
   text-align: center;
   border: 1px solid ${keyboardColors.gray};

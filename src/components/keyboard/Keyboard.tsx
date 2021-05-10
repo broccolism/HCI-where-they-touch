@@ -20,7 +20,7 @@ function Keyboard({ onTypping }: KeyboardProps) {
                   <KeyTile
                     onTypping={onTypping}
                     letter={letter}
-                    width="24px"
+                    width="23px"
                     height="32px"
                     padding="3px"
                     margin="3px"
@@ -38,7 +38,6 @@ function Keyboard({ onTypping }: KeyboardProps) {
 
 const Wrapper = styled.div`
   width: 350px;
-  padding: 4px 10px;
   background-color: ${keyboardColors.grayLight};
 `;
 

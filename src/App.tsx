@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { addTouchCookie, getAllCookie } from "./apis/cookie";
 import StepIndicator from "./components/layout/StepIndicator";
 import { StyeldEmptyDiv } from "./components/layout/StyledComponents";
+import { keyboardColors } from "./constants/colors";
 import { CustomPath } from "./constants/path";
 import HomePage from "./pages/HomePage";
 import KeyboardTestPage from "./pages/KeyboardTestPage";
@@ -13,33 +14,47 @@ import ResultPage from "./pages/ResultPage";
 
 function App() {
   return (
-    <MobileWrapper>
-      <BrowserRouter>
-        <StyeldEmptyDiv height="16px" />
-        <StepIndicator />
-        <StyeldEmptyDiv height="18px" />
-        <Switch>
-          <Route path={CustomPath.RESULT}>
-            <ResultPage />
-          </Route>
-          <Route path={CustomPath.QUESTION}>
-            <QuestionPage />
-          </Route>
-          <Route path={CustomPath.KEYBOARD}>
-            <KeyboardTestPage />
-          </Route>
-          <Route path={CustomPath.NOTICE}>
-            <NoticePage />
-          </Route>
-          <Route path={CustomPath.HOME}>
-            <HomePage />
-          </Route>
-        </Switch>
-      </BrowserRouter>
-    </MobileWrapper>
+    <Background>
+      <MobileWrapper>
+        <BrowserRouter>
+          <StyeldEmptyDiv height="16px" />
+          <StepIndicator />
+          <StyeldEmptyDiv height="18px" />
+          <Switch>
+            <Route path={CustomPath.RESULT}>
+              <ResultPage />
+            </Route>
+            <Route path={CustomPath.QUESTION}>
+              <QuestionPage />
+            </Route>
+            <Route path={CustomPath.KEYBOARD}>
+              <KeyboardTestPage />
+            </Route>
+            <Route path={CustomPath.NOTICE}>
+              <NoticePage />
+            </Route>
+            <Route path={CustomPath.HOME}>
+              <HomePage />
+            </Route>
+          </Switch>
+        </BrowserRouter>
+      </MobileWrapper>
+    </Background>
   );
 }
 
-const MobileWrapper = styled.div``;
+const Background = styled.div`
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  justify-content: center;
+  background-color: ${keyboardColors.blue};
+`;
 
+const MobileWrapper = styled.div`
+  width: 350px;
+  background-color: ${keyboardColors.white};
+`;
 export default App;

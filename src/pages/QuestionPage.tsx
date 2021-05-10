@@ -114,8 +114,11 @@ function QuestionPage() {
           </RadioGroup>
         </TouchDetector>
       </QuestionSection>
-      <StyeldEmptyDiv height="24px" />
-      <TouchDetector handleTouch={handleTouchGoNext}>
+      <TouchDetector
+        width="100vw"
+        height="100px"
+        handleTouch={handleTouchGoNext}
+      >
         <LongButton>결과 보기</LongButton>
       </TouchDetector>
     </StyledColumn>
@@ -135,8 +138,8 @@ const Question = styled.div`
 `;
 
 const LongButton = styled.div`
-  width: 90vw;
-  padding: 10px;
+  width: 330px;
+  padding: 10px 0px;
   background-color: ${keyboardColors.red};
   color: ${keyboardColors.white};
   text-align: center;
