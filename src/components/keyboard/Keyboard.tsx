@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { keyboardColors } from "../../constants/colors";
 import { keyLetters } from "../../constants/keyLetters";
+import { MOBILE_COMMON_WIDTH } from "../../constants/size";
 import KeyTile from "./KeyTile";
 
 interface KeyboardProps {
@@ -18,6 +19,7 @@ function Keyboard({ onTypping }: KeyboardProps) {
               {row.map((letter: string) => {
                 return (
                   <KeyTile
+                    key={letter}
                     onTypping={onTypping}
                     letter={letter}
                     width="23px"
@@ -37,7 +39,7 @@ function Keyboard({ onTypping }: KeyboardProps) {
 }
 
 const Wrapper = styled.div`
-  width: 350px;
+  width: ${MOBILE_COMMON_WIDTH};
   background-color: ${keyboardColors.grayLight};
 `;
 

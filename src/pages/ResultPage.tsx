@@ -14,12 +14,13 @@ import { MdEmail } from "react-icons/md";
 import { getTouchesForResultCookie } from "../apis/cookie";
 import { testWords } from "../constants/testContents";
 import { AiOutlineGithub } from "react-icons/ai";
+import { MOBILE_COMMON_WIDTH } from "../constants/size";
 
 function ResultPage() {
   const userAnswers = getTouchesForResultCookie();
 
   return (
-    <StyledColumn>
+    <StyledColumn width={MOBILE_COMMON_WIDTH}>
       <IconWrapper>🎉</IconWrapper>
       <StyeldEmptyDiv height="24px" />
       <Title>감사합니다!</Title>
@@ -46,8 +47,8 @@ function ResultPage() {
               const answer = testWords[index].answer;
               return (
                 <StyledRow
-                  width="80vw"
-                  key={input}
+                  width="100%"
+                  key={input + index.toString()}
                   crossAxisAlignment="center"
                   style={{
                     borderBottom: `1px solid ${keyboardColors.gray}`,
@@ -88,8 +89,7 @@ function ResultPage() {
             <StyledColumn crossAxisAlignment="flex-end">
               <AiOutlineGithub size="40px" />
               <StyeldEmptyDiv height="8px" />
-              @broccolism
-              <br />
+              <div>@broccolism</div> <br />
               만든 이가 뭐하는 사람인지 보러가기
             </StyledColumn>
           </MailWrapper>

@@ -16,6 +16,7 @@ import {
 import { CustomPath } from "../constants/path";
 import TouchDetector from "../components/TouchDetector";
 import { ButtonNames } from "../constants/cookie";
+import { MOBILE_COMMON_WIDTH } from "../constants/size";
 
 function HomePage() {
   const handleTouch = (e: any) => {
@@ -46,7 +47,11 @@ function HomePage() {
         다른 사람과 결과를 비교해보세요.
       </Content>
       <StyeldEmptyDiv height="10px" />
-      <TouchDetector width="100vw" height="16vh" handleTouch={handleTouch}>
+      <TouchDetector
+        width={MOBILE_COMMON_WIDTH}
+        height="120px"
+        handleTouch={handleTouch}
+      >
         <TextButton>시작하기 &gt;</TextButton>
       </TouchDetector>
     </StyledColumn>
@@ -54,8 +59,8 @@ function HomePage() {
 }
 
 const TextButton = styled.div`
+  width: 100%;
   text-align: center;
-  padding: 5vh 30vw;
 `;
 
 export default HomePage;

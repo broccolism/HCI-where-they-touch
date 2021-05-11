@@ -6,13 +6,13 @@ import {
   IconWrapper,
   StyeldEmptyDiv,
   StyledColumn,
-  SubTitle,
   Title,
 } from "../components/layout/StyledComponents";
 import TouchDetector from "../components/TouchDetector";
 import { keyboardColors } from "../constants/colors";
 import { ButtonNames } from "../constants/cookie";
 import { CustomPath } from "../constants/path";
+import { MOBILE_COMMON_WIDTH } from "../constants/size";
 import { AnswerFieldName, Answers } from "../models/dataTypes";
 
 function QuestionPage() {
@@ -32,6 +32,8 @@ function QuestionPage() {
 
     let newAnswers: any = { ...answers };
     newAnswers[name] = value;
+    // TODO: 잘 들어가는지 확인 후 서버로 전송
+    setAnswers(newAnswers);
   };
 
   const handleTouchGoNext = (e: any) => {
@@ -40,14 +42,14 @@ function QuestionPage() {
   };
 
   return (
-    <StyledColumn>
+    <StyledColumn width={MOBILE_COMMON_WIDTH}>
       <IconWrapper>🧐</IconWrapper>
       <StyeldEmptyDiv height="24px" />
       <Title>거의 다 왔습니다!</Title>
       <StyeldEmptyDiv height="36px" />
       <QuestionSection>
         <Question>성별을 알려주세요.</Question>
-        <TouchDetector width="100vw" handleTouch={handleTouch}>
+        <TouchDetector width={MOBILE_COMMON_WIDTH} handleTouch={handleTouch}>
           <RadioGroup
             style={{ width: "100%", padding: "0px 20px" }}
             aria-label="position"
@@ -83,7 +85,7 @@ function QuestionPage() {
       <StyeldEmptyDiv height="24px" />
       <QuestionSection>
         <Question>스마트폰 키보드를 주로 어떻게 사용하나요?</Question>
-        <TouchDetector width="100vw" handleTouch={handleTouch}>
+        <TouchDetector handleTouch={handleTouch}>
           <RadioGroup
             style={{ width: "100%", padding: "0px 20px" }}
             aria-label="position"
@@ -114,11 +116,7 @@ function QuestionPage() {
           </RadioGroup>
         </TouchDetector>
       </QuestionSection>
-      <TouchDetector
-        width="100vw"
-        height="100px"
-        handleTouch={handleTouchGoNext}
-      >
+      <TouchDetector height="100px" handleTouch={handleTouchGoNext}>
         <LongButton>결과 보기</LongButton>
       </TouchDetector>
     </StyledColumn>

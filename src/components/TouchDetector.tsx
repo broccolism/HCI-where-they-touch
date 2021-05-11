@@ -21,15 +21,15 @@ function TouchDetector({
 }
 
 const Container = styled.div<SizeProps>`
-  width: ${(props) => props.width ?? "auto"};
+  width: ${(props) => props.width ?? "100%"};
   height: ${(props) => props.height ?? "auto"};
-  background-color: #abcdef;
+  background-color: #e357498a;
   z-index: 2;
   position: relative;
   top: 0;
   left: 0;
-  opacity: 0.5;
-  border: 1px solid #000;
+  // opacity: 0.2;
+  border: 1px solid red;
   display: flex;
   align-items: center;
   justify-content: center;

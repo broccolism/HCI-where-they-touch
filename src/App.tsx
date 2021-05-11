@@ -6,6 +6,7 @@ import StepIndicator from "./components/layout/StepIndicator";
 import { StyeldEmptyDiv } from "./components/layout/StyledComponents";
 import { keyboardColors } from "./constants/colors";
 import { CustomPath } from "./constants/path";
+import { MOBILE_COMMON_WIDTH } from "./constants/size";
 import HomePage from "./pages/HomePage";
 import KeyboardTestPage from "./pages/KeyboardTestPage";
 import NoticePage from "./pages/NoticePage";
@@ -45,16 +46,17 @@ function App() {
 
 const Background = styled.div`
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: row;
   align-items: start;
   justify-content: center;
-  background-color: ${keyboardColors.blue};
+  background-color: ${keyboardColors.black};
 `;
 
 const MobileWrapper = styled.div`
-  width: 350px;
+  width: ${MOBILE_COMMON_WIDTH};
+  min-height: 100vh;
   background-color: ${keyboardColors.white};
 `;
 export default App;

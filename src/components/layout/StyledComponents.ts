@@ -50,6 +50,7 @@ export const Accent = styled.span`
 
 export const Content = styled.div<SizeProps>`
   width: ${(props) => props.width ?? "auto"};
+  padding: ${(props) => props.padding ?? "auto"};
   font-size: 16px;
   line-height: 1.4;
 `;

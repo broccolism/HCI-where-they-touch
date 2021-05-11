@@ -12,6 +12,7 @@ import TouchDetector from "../components/TouchDetector";
 import { keyboardColors } from "../constants/colors";
 import { ButtonNames } from "../constants/cookie";
 import { CustomPath } from "../constants/path";
+import { MOBILE_COMMON_WIDTH } from "../constants/size";
 import { testWords } from "../constants/testContents";
 
 function NoticePage() {
@@ -28,7 +29,7 @@ function NoticePage() {
         수정할 수 없어요
       </Title>
       <StyeldEmptyDiv height="32px" />
-      <Content>
+      <Content padding="0px 20px">
         보다 정확한 측정을 위해
         <Accent> 스마트폰의 기존 키보드와 글자를 지우는 키</Accent>는 쓸 수
         없습니다.
@@ -41,7 +42,11 @@ function NoticePage() {
       </Content>
       <StyeldEmptyDiv height="24px" />
       <KeyboardInput />
-      <TouchDetector width="100vw" height="20vh" handleTouch={handleTouch}>
+      <TouchDetector
+        width={MOBILE_COMMON_WIDTH}
+        height="20vh"
+        handleTouch={handleTouch}
+      >
         <FilledButton>시작</FilledButton>
       </TouchDetector>
     </StyledColumn>
