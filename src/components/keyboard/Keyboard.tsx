@@ -2,14 +2,16 @@ import React from "react";
 import styled from "styled-components";
 import { keyboardColors } from "../../constants/colors";
 import { keyLetters } from "../../constants/keyLetters";
-import { MOBILE_COMMON_WIDTH } from "../../constants/size";
+import { KeyboardSizeType, MOBILE_COMMON_WIDTH } from "../../constants/size";
 import KeyTile from "./KeyTile";
 
 interface KeyboardProps {
   onTypping: (e: any, letter: string) => void;
+  size: KeyboardSizeType;
+  allowTouchMargin?: boolean;
 }
 
-function Keyboard({ onTypping }: KeyboardProps) {
+function Keyboard({ onTypping, size, allowTouchMargin }: KeyboardProps) {
   return (
     <Wrapper>
       <Column>
@@ -22,11 +24,8 @@ function Keyboard({ onTypping }: KeyboardProps) {
                     key={letter}
                     onTypping={onTypping}
                     letter={letter}
-                    width="23px"
-                    height="32px"
-                    padding="3px"
-                    margin="3px"
-                    total="10px 6px"
+                    size={size}
+                    allowTouchMargin={allowTouchMargin}
                   />
                 );
               })}

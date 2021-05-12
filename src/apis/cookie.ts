@@ -44,11 +44,11 @@ const getAccTouchCookie = () => {
 };
 
 const makeTouchObj = (e: any, content: string): UserTouch => {
-  const pageX = e.touches[0].pageX;
-  const pageY = e.touches[0].pageY;
+  const pageX = e.changedTouches[0].pageX.toFixed(2);
+  const pageY = e.changedTouches[0].pageY.toFixed(2);
   const touch: UserTouch = {
-    pageX: Math.round(pageX),
-    pageY: Math.round(pageY),
+    pageX: pageX,
+    pageY: pageY,
     path: window.location.pathname + window.location.hash,
     createdAt: new Date(),
     content: content,

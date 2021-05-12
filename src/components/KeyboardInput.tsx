@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { addTouchCookie } from "../apis/cookie";
 import { keyboardColors } from "../constants/colors";
+import { testWords } from "../constants/testContents";
 import Keyboard from "./keyboard/Keyboard";
 import { StyeldEmptyDiv, StyledColumn } from "./layout/StyledComponents";
 
@@ -12,15 +13,22 @@ interface Props {
 
 function KeyboardInput({ value, onTypping }: Props) {
   const [input, setInput] = useState<string>("");
-  const handleInput = (e: any, letter: string) => {
+  const handleInputChange = (e: any, letter: string) => {
     setInput(input + letter);
   };
+  const hash = +window.location.hash[1];
+  const isLarge = hash % 2 === 0;
+  const allowTouchMargin = hash < testWords.length / 2;
 
   return (
     <StyledColumn>
       <FakeInputField>{value ?? input}</FakeInputField>
       <StyeldEmptyDiv height="12px" />
-      <Keyboard onTypping={onTypping ?? handleInput} />
+      <Keyboard
+        onTypping={onTypping ?? handleInputChange}
+        size={isLarge ? "large" : "small"}
+        allowTouchMargin={allowTouchMargin}
+      />
     </StyledColumn>
   );
 }

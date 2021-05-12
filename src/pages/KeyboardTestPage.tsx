@@ -16,7 +16,6 @@ function KeyboardTestPage() {
 
   const handleTypping = (e: any, letter: string) => {
     addTouchCookie(e, letter);
-
     const newInput = input + letter;
     const testWordLength = testWords[step].length;
     if (newInput.length === testWordLength) {
