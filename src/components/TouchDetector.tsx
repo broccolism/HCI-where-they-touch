@@ -14,7 +14,7 @@ function TouchDetector({
   children,
 }: SizeProps & DetectorProps) {
   return (
-    <Container width={width} height={height} onTouchStart={handleTouch}>
+    <Container width={width} height={height} onTouchEnd={handleTouch}>
       {children}
     </Container>
   );

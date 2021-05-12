@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import styled from "styled-components";
-import { addTouchCookie, getAllCookie } from "./apis/cookie";
 import StepIndicator from "./components/layout/StepIndicator";
 import { StyeldEmptyDiv } from "./components/layout/StyledComponents";
 import { keyboardColors } from "./constants/colors";

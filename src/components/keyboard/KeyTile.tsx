@@ -12,7 +12,7 @@ interface KeyTileProps {
 function KeyTile(props: KeyTileProps & SizeProps) {
   return (
     <Background
-      onTouchStart={(e: any) => props.onTypping(e, props.letter)}
+      onTouchEnd={(e: any) => props.onTypping(e, props.letter)}
       width={props.width}
       height={props.height}
       total={props.total}
