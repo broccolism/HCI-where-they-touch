@@ -1,7 +1,7 @@
 import { Cookies } from "react-cookie";
 import { CookieName, CustomPath } from "../constants/path";
 import { testWords } from "../constants/testContents";
-import { ScreenSize, UserTouch } from "../models/dataTypes";
+import { Answers, ScreenSize, UserTouch } from "../models/dataTypes";
 
 const cookie = new Cookies();
 
@@ -56,13 +56,12 @@ const makeTouchObj = (e: any, content: string): UserTouch => {
   return touch;
 };
 
-export const getAllCookie = () => {
-  let history = [];
-  history.push({
-    key: CookieName.TOUCHES,
-    data: JSON.parse(localStorage[CookieName.TOUCHES]),
-  });
-  history.push({ key: CookieName.SIZE, data: localStorage[CookieName.SIZE] });
+export const addAnswerCookie = (answers: Answers) => {
+  localStorage.setItem(CookieName.ANSWERS, JSON.stringify(answers));
+};
 
-  return history;
+export const getAllCookie = () => {
+  return Object.values(CookieName).map((name) => {
+    return { key: name, data: JSON.parse(localStorage[name]) };
+  });
 };

@@ -9,4 +9,5 @@ export enum CustomPath {
 export enum CookieName {
   TOUCHES = "touches",
   SIZE = "size",
+  ANSWERS = "answers",
 }

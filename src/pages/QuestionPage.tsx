@@ -1,7 +1,7 @@
 import { FormControlLabel, Input, Radio, RadioGroup } from "@material-ui/core";
 import { useState } from "react";
 import styled from "styled-components";
-import { addTouchCookie } from "../apis/cookie";
+import { addAnswerCookie, addTouchCookie, getAllCookie } from "../apis/cookie";
 import {
   IconWrapper,
   StyeldEmptyDiv,
@@ -32,12 +32,13 @@ function QuestionPage() {
 
     let newAnswers: any = { ...answers };
     newAnswers[name] = value;
-    // TODO: 잘 들어가는지 확인 후 서버로 전송
     setAnswers(newAnswers);
   };
 
   const handleTouchGoNext = (e: any) => {
     addTouchCookie(e, ButtonNames.QUESTION_NEXT);
+    addAnswerCookie(answers);
+    const history = getAllCookie();
     window.location.assign(CustomPath.RESULT);
   };
 
@@ -80,6 +81,7 @@ function QuestionPage() {
           name="age"
           style={{ marginLeft: "20px" }}
           placeholder="숫자만 입력해주세요"
+          onChange={handleAnswer}
         />
       </QuestionSection>
       <StyeldEmptyDiv height="24px" />
@@ -89,7 +91,7 @@ function QuestionPage() {
           <RadioGroup
             style={{ width: "100%", padding: "0px 20px" }}
             aria-label="position"
-            name="t-type"
+            name="typpingType"
             onChange={handleAnswer}
           >
             <FormControlLabel
