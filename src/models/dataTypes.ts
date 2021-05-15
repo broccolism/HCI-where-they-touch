@@ -1,3 +1,5 @@
+import firebase from "firebase";
+
 export interface ScreenSize {
   width: number;
   height: number;
@@ -18,3 +20,10 @@ export interface Answers {
 }
 
 export type AnswerFieldName = "gender" | "age" | "typpingType";
+
+export interface ModelToServer {
+  screenSize: ScreenSize;
+  touches: UserTouch[];
+  answers: Answers;
+  createdAt: firebase.firestore.Timestamp;
+}

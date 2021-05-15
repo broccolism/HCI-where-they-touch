@@ -2,6 +2,7 @@ import { FormControlLabel, Input, Radio, RadioGroup } from "@material-ui/core";
 import { useState } from "react";
 import styled from "styled-components";
 import { addAnswerCookie, addTouchCookie, getAllCookie } from "../apis/cookie";
+import { uploadUserLog } from "../apis/firebase";
 import {
   IconWrapper,
   StyeldEmptyDiv,
@@ -38,8 +39,7 @@ function QuestionPage() {
   const handleTouchGoNext = (e: any) => {
     addTouchCookie(e, ButtonNames.QUESTION_NEXT);
     addAnswerCookie(answers);
-    const history = getAllCookie();
-    window.location.assign(CustomPath.RESULT);
+    uploadUserLog();
   };
 
   return (

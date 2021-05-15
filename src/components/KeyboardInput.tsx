@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { addTouchCookie } from "../apis/cookie";
 import { keyboardColors } from "../constants/colors";
 import { testWords } from "../constants/testContents";
 import Keyboard from "./keyboard/Keyboard";

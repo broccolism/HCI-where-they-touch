@@ -34,6 +34,7 @@ export const getTouchesForResultCookie = () => {
 };
 
 export const addTouchCookie = (e: any, content: string) => {
+  console.log("@@@ ADD TOUCH COOKIE", content, e);
   const touch: UserTouch = makeTouchObj(e, content);
   const newCookie = getAccTouchCookie().concat(touch);
   localStorage.setItem(CookieName.TOUCHES, JSON.stringify(newCookie));

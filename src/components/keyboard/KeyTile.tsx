@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { addTouchCookie } from "../../apis/cookie";
 import { keyboardColors } from "../../constants/colors";
 import {
   LARGE_KEYTILE,
@@ -20,11 +19,14 @@ function KeyTile({ letter, onTypping, allowTouchMargin, size }: KeyTileProps) {
   const handleTouchBackground = (e: any) => {
     if (allowTouchMargin) {
       onTypping(e, letter);
-    } else {
-      addTouchCookie(e, letter);
     }
   };
 
+  const handleTouchForefround = (e: any) => {
+    if (!allowTouchMargin) {
+      onTypping(e, letter);
+    }
+  };
   return (
     <Background
       width={size == "large" ? LARGE_KEYTILE.width : SMALL_KEYTILE.width}
@@ -33,7 +35,7 @@ function KeyTile({ letter, onTypping, allowTouchMargin, size }: KeyTileProps) {
       onTouchEnd={handleTouchBackground}
     >
       <Foreground
-        onTouchEnd={(e: any) => onTypping(e, letter)}
+        onTouchEnd={handleTouchForefround}
         width={size == "large" ? LARGE_KEYTILE.width : SMALL_KEYTILE.width}
         height={size == "large" ? LARGE_KEYTILE.height : SMALL_KEYTILE.height}
         padding={
