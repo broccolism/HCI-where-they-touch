@@ -1,11 +1,12 @@
 import { Cookies } from "react-cookie";
 import { CookieName, CustomPath } from "../constants/path";
 import { testWords } from "../constants/testContents";
-import { Answers, ScreenSize, UserTouch } from "../models/dataTypes";
+import { Answers, ScreenSize, UserTouch, Try } from "../models/dataTypes";
 
 const cookie = new Cookies();
 
 export const setInitTouchesCookie = () => {
+  localStorage.setItem(CookieName.TRIES, JSON.stringify([]));
   localStorage.setItem(CookieName.TOUCHES, JSON.stringify([]));
 };
 
@@ -33,8 +34,20 @@ export const getTouchesForResultCookie = () => {
   return userInputsPerWords;
 };
 
+export const addTryCookie = (word: string, tries: number) => {
+  const newTry: Try = {
+    target: word,
+    tries: tries,
+  };
+  const newCookie = getAccTriesCookie().concat(newTry);
+  localStorage.setItem(CookieName.TRIES, JSON.stringify(newCookie));
+};
+
+const getAccTriesCookie = () => {
+  return JSON.parse(localStorage.getItem(CookieName.TRIES)!);
+};
+
 export const addTouchCookie = (e: any, content: string) => {
-  console.log("@@@ ADD TOUCH COOKIE", content, e);
   const touch: UserTouch = makeTouchObj(e, content);
   const newCookie = getAccTouchCookie().concat(touch);
   localStorage.setItem(CookieName.TOUCHES, JSON.stringify(newCookie));

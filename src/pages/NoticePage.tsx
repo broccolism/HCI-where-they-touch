@@ -41,7 +41,7 @@ function NoticePage() {
         테스트에 사용될 키보드로 미리 연습해보세요.
       </Content>
       <StyeldEmptyDiv height="24px" />
-      <KeyboardInput />
+      <KeyboardInput onClick={() => {}} />
       <TouchDetector
         width={MOBILE_COMMON_WIDTH}
         height="20vh"

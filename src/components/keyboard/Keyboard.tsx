@@ -6,14 +6,20 @@ import { KeyboardSizeType, MOBILE_COMMON_WIDTH } from "../../constants/size";
 import KeyTile from "./KeyTile";
 
 interface KeyboardProps {
+  onClick: () => void;
   onTypping: (e: any, letter: string) => void;
   size: KeyboardSizeType;
   allowTouchMargin?: boolean;
 }
 
-function Keyboard({ onTypping, size, allowTouchMargin }: KeyboardProps) {
+function Keyboard({
+  onClick,
+  onTypping,
+  size,
+  allowTouchMargin,
+}: KeyboardProps) {
   return (
-    <Wrapper>
+    <Wrapper onClick={onClick}>
       <Column>
         {keyLetters.map((row) => {
           return (

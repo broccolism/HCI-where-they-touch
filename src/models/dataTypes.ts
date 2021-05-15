@@ -19,10 +19,16 @@ export interface Answers {
   typpingType: string;
 }
 
+export interface Try {
+  target: string;
+  tries: number;
+}
+
 export type AnswerFieldName = "gender" | "age" | "typpingType";
 
 export interface ModelToServer {
   screenSize: ScreenSize;
+  tries: Try[];
   touches: UserTouch[];
   answers: Answers;
   createdAt: firebase.firestore.Timestamp;

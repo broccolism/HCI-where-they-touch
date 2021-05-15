@@ -8,9 +8,10 @@ import { StyeldEmptyDiv, StyledColumn } from "./layout/StyledComponents";
 interface Props {
   value?: string;
   onTypping?: (e: any, letter: string) => void;
+  onClick: () => void;
 }
 
-function KeyboardInput({ value, onTypping }: Props) {
+function KeyboardInput({ value, onTypping, onClick }: Props) {
   const [input, setInput] = useState<string>("");
   const handleInputChange = (e: any, letter: string) => {
     setInput(input + letter);
@@ -24,6 +25,7 @@ function KeyboardInput({ value, onTypping }: Props) {
       <FakeInputField>{value ?? input}</FakeInputField>
       <StyeldEmptyDiv height="12px" />
       <Keyboard
+        onClick={onClick}
         onTypping={onTypping ?? handleInputChange}
         size={isLarge ? "large" : "small"}
         allowTouchMargin={allowTouchMargin}

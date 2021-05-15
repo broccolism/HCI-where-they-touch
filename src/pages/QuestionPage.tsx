@@ -1,5 +1,11 @@
-import { FormControlLabel, Input, Radio, RadioGroup } from "@material-ui/core";
-import { useState } from "react";
+import {
+  CircularProgress,
+  FormControlLabel,
+  Input,
+  Radio,
+  RadioGroup,
+} from "@material-ui/core";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { addAnswerCookie, addTouchCookie, getAllCookie } from "../apis/cookie";
 import { uploadUserLog } from "../apis/firebase";
@@ -17,6 +23,7 @@ import { MOBILE_COMMON_WIDTH } from "../constants/size";
 import { AnswerFieldName, Answers } from "../models/dataTypes";
 
 function QuestionPage() {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [answers, setAnswers] = useState<Answers>({
     gender: "",
     age: 0,
@@ -36,10 +43,11 @@ function QuestionPage() {
     setAnswers(newAnswers);
   };
 
-  const handleTouchGoNext = (e: any) => {
+  const handleTouchGoNext = async (e: any) => {
     addTouchCookie(e, ButtonNames.QUESTION_NEXT);
     addAnswerCookie(answers);
-    uploadUserLog();
+    setIsLoading(true);
+    await uploadUserLog();
   };
 
   return (
@@ -118,9 +126,13 @@ function QuestionPage() {
           </RadioGroup>
         </TouchDetector>
       </QuestionSection>
-      <TouchDetector height="100px" handleTouch={handleTouchGoNext}>
-        <LongButton>결과 보기</LongButton>
-      </TouchDetector>
+      {isLoading ? (
+        <CircularProgress color="secondary" />
+      ) : (
+        <TouchDetector height="100px" handleTouch={handleTouchGoNext}>
+          <LongButton>결과 보기</LongButton>
+        </TouchDetector>
+      )}
     </StyledColumn>
   );
 }
