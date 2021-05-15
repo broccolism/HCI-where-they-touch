@@ -22,13 +22,4 @@ export const uploadUserLog = async () => {
   }
 
   window.location.assign(CustomPath.RESULT);
-
-  // db.collection("Logs")
-  //   .add(newLog)
-  //   .then((docRef) => {
-  //     window.location.assign(CustomPath.RESULT);
-  //   })
-  //   .catch((err) => {
-  //     console.log("@@@@ firebase add err:", err);
-  //   });
 };
