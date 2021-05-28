@@ -73,7 +73,7 @@ const Background = styled.div<SizeProps & { margin: string }>`
   width: ${(props) => props.width ?? "auto"};
   height: ${(props) => props.height ?? "auto"};
   padding: ${(props) => props.margin};
-  background-color: red;
+  background-color: ${keyboardColors.grayLight};
   margin: 0px;
   cursor: pointer;
 `;
