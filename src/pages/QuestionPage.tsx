@@ -6,9 +6,12 @@ import {
   RadioGroup,
 } from "@material-ui/core";
 import React, { useState } from "react";
+import { useEffect } from "react";
+import { useRef } from "react";
 import styled from "styled-components";
 import { addAnswerCookie, addTouchCookie, getAllCookie } from "../apis/cookie";
 import { uploadUserLog } from "../apis/firebase";
+import getPositionAndSize from "../apis/positionAndSize";
 import {
   IconWrapper,
   StyeldEmptyDiv,
@@ -21,8 +24,24 @@ import { ButtonNames } from "../constants/cookie";
 import { CustomPath } from "../constants/path";
 import { MOBILE_COMMON_WIDTH } from "../constants/size";
 import { AnswerFieldName, Answers } from "../models/dataTypes";
+import { PosAndSize } from "../models/posAndSizeTypes";
 
 function QuestionPage() {
+  const maleButton = useRef<HTMLDivElement>(null);
+  const femaleButton = useRef<HTMLDivElement>(null);
+  const longButton = useRef<HTMLDivElement>(null);
+  const shortButton = useRef<HTMLDivElement>(null);
+  const bothButton = useRef<HTMLDivElement>(null);
+  const resultButton = useRef<HTMLDivElement>(null);
+  const buttonRefs = [
+    maleButton,
+    femaleButton,
+    longButton,
+    shortButton,
+    bothButton,
+    resultButton,
+  ];
+
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [answers, setAnswers] = useState<Answers>({
     gender: "",
@@ -50,6 +69,18 @@ function QuestionPage() {
     await uploadUserLog();
   };
 
+  useEffect(() => {
+    buttonRefs.forEach((ref) => printRef(ref));
+  });
+
+  const printRef = (ref: React.RefObject<HTMLDivElement>) => {
+    const posAndSize: PosAndSize = getPositionAndSize(
+      ref,
+      ref.current!.textContent!
+    );
+    console.log(posAndSize);
+  };
+
   return (
     <StyledColumn width={MOBILE_COMMON_WIDTH}>
       <IconWrapper>🧐</IconWrapper>
@@ -66,6 +97,7 @@ function QuestionPage() {
             onChange={handleAnswer}
           >
             <FormControlLabel
+              ref={maleButton}
               style={{ width: "100%", padding: "4px" }}
               value="남자"
               control={<Radio color="primary" />}
@@ -73,6 +105,7 @@ function QuestionPage() {
               labelPlacement="end"
             />
             <FormControlLabel
+              ref={femaleButton}
               style={{ width: "100%", padding: "4px" }}
               value="여자"
               control={<Radio color="primary" />}
@@ -103,6 +136,7 @@ function QuestionPage() {
             onChange={handleAnswer}
           >
             <FormControlLabel
+              ref={longButton}
               style={{ width: "100%", padding: "4px" }}
               value="긴 글 적기 (예: SNS 글 | 블로그)"
               control={<Radio color="primary" />}
@@ -110,6 +144,7 @@ function QuestionPage() {
               labelPlacement="end"
             />
             <FormControlLabel
+              ref={shortButton}
               style={{ width: "100%", padding: "4px" }}
               value="짧은 글 적기 (예: 카카오톡 | 문자 | 검색)"
               control={<Radio color="primary" />}
@@ -117,6 +152,7 @@ function QuestionPage() {
               labelPlacement="end"
             />
             <FormControlLabel
+              ref={bothButton}
               style={{ width: "100%", padding: "4px" }}
               value="위 2가지 모두"
               control={<Radio color="primary" />}
@@ -130,7 +166,7 @@ function QuestionPage() {
         <CircularProgress color="secondary" />
       ) : (
         <TouchDetector height="100px" handleTouch={handleTouchGoNext}>
-          <LongButton>결과 보기</LongButton>
+          <LongButton ref={resultButton}>결과 보기</LongButton>
         </TouchDetector>
       )}
     </StyledColumn>

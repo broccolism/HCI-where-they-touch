@@ -3,3 +3,8 @@ export const keyLetters = [
   ["ㅁ", "ㄴ", "ㅇ", "ㄹ", "ㅎ", "ㅗ", "ㅓ", "ㅏ", "ㅣ"],
   ["ㅋ", "ㅌ", "ㅊ", "ㅍ", "ㅠ", "ㅜ", "ㅡ"],
 ];
+
+export const NUM_KEY_LETTER: number = keyLetters.reduce(
+  (acc, row) => acc + row.length,
+  0
+);

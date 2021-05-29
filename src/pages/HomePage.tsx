@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 import {
   Content,
@@ -17,8 +17,11 @@ import { CustomPath } from "../constants/path";
 import TouchDetector from "../components/TouchDetector";
 import { ButtonNames } from "../constants/cookie";
 import { MOBILE_COMMON_WIDTH } from "../constants/size";
+import getPositionAndSize from "../apis/positionAndSize";
 
 function HomePage() {
+  const buttonRef = useRef<HTMLDivElement>(null);
+
   const handleTouch = (e: any) => {
     addTouchCookie(e, ButtonNames.HOME_START);
     window.location.assign(CustomPath.NOTICE);
@@ -28,6 +31,12 @@ function HomePage() {
     setInitTouchesCookie();
     setScreenSizeCookie();
   }, []);
+
+  useEffect(() => {
+    if (buttonRef !== undefined && buttonRef !== null) {
+      console.log("@@@", getPositionAndSize(buttonRef, "시작하기"));
+    }
+  });
 
   return (
     <StyledColumn>
@@ -52,7 +61,7 @@ function HomePage() {
         height="120px"
         handleTouch={handleTouch}
       >
-        <TextButton>시작하기 &gt;</TextButton>
+        <TextButton ref={buttonRef}>시작하기 &gt;</TextButton>
       </TouchDetector>
     </StyledColumn>
   );

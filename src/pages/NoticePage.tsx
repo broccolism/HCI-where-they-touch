@@ -1,5 +1,7 @@
+import { useRef, useEffect } from "react";
 import styled from "styled-components";
 import { addTouchCookie } from "../apis/cookie";
+import getPositionAndSize from "../apis/positionAndSize";
 import KeyboardInput from "../components/KeyboardInput";
 import {
   Accent,
@@ -16,10 +18,18 @@ import { MOBILE_COMMON_WIDTH } from "../constants/size";
 import { testWords } from "../constants/testContents";
 
 function NoticePage() {
+  const buttonRef = useRef<HTMLDivElement>(null);
+
   const handleTouch = (e: any) => {
     addTouchCookie(e, ButtonNames.NOTICE_START);
     window.location.assign(CustomPath.KEYBOARD + testWords[0].hash);
   };
+
+  useEffect(() => {
+    if (buttonRef !== undefined && buttonRef !== null) {
+      console.log("@@@", getPositionAndSize(buttonRef, "시작"));
+    }
+  });
 
   return (
     <StyledColumn>
@@ -47,7 +57,7 @@ function NoticePage() {
         height="20vh"
         handleTouch={handleTouch}
       >
-        <FilledButton>시작</FilledButton>
+        <FilledButton ref={buttonRef}>시작</FilledButton>
       </TouchDetector>
     </StyledColumn>
   );

@@ -1,21 +1,32 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
+import getPositionAndSize from "../../apis/positionAndSize";
 import { keyboardColors } from "../../constants/colors";
 import {
   LARGE_KEYTILE,
   KeyboardSizeType,
   SMALL_KEYTILE,
 } from "../../constants/size";
+import { PosAndSize } from "../../models/posAndSizeTypes";
 import { SizeProps } from "../../models/propTypes";
 
 interface KeyTileProps {
   letter: string;
-  onTypping: (e: any, letter: string) => void;
   allowTouchMargin?: boolean;
   size: KeyboardSizeType;
+  onTypping: (e: any, letter: string) => void;
+  handleNewKeyTilePos: (target: PosAndSize) => void;
 }
 
-function KeyTile({ letter, onTypping, allowTouchMargin, size }: KeyTileProps) {
+function KeyTile({
+  letter,
+  allowTouchMargin,
+  size,
+  onTypping,
+  handleNewKeyTilePos,
+}: KeyTileProps) {
+  const keyTileRef = useRef<HTMLDivElement>(null);
+
   const handleTouchBackground = (e: any) => {
     if (allowTouchMargin) {
       onTypping(e, letter);
@@ -27,6 +38,14 @@ function KeyTile({ letter, onTypping, allowTouchMargin, size }: KeyTileProps) {
       onTypping(e, letter);
     }
   };
+
+  useEffect(() => {
+    if (keyTileRef !== undefined && keyTileRef !== null) {
+      const posAndSize = getPositionAndSize(keyTileRef, letter);
+      handleNewKeyTilePos(posAndSize);
+    }
+  });
+
   return (
     <Background
       width={size == "large" ? LARGE_KEYTILE.width : SMALL_KEYTILE.width}
@@ -35,6 +54,7 @@ function KeyTile({ letter, onTypping, allowTouchMargin, size }: KeyTileProps) {
       onTouchEnd={handleTouchBackground}
     >
       <Foreground
+        ref={keyTileRef}
         onTouchEnd={handleTouchForefround}
         width={size == "large" ? LARGE_KEYTILE.width : SMALL_KEYTILE.width}
         height={size == "large" ? LARGE_KEYTILE.height : SMALL_KEYTILE.height}

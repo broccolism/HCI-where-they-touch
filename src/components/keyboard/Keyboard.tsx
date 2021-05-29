@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
+import getPositionAndSize from "../../apis/positionAndSize";
 import { keyboardColors } from "../../constants/colors";
-import { keyLetters } from "../../constants/keyLetters";
+import { keyLetters, NUM_KEY_LETTER } from "../../constants/keyLetters";
 import { KeyboardSizeType, MOBILE_COMMON_WIDTH } from "../../constants/size";
+import { PosAndSize } from "../../models/posAndSizeTypes";
 import KeyTile from "./KeyTile";
 
 interface KeyboardProps {
@@ -18,6 +20,34 @@ function Keyboard({
   size,
   allowTouchMargin,
 }: KeyboardProps) {
+  const [posList, setPosList] = useState<PosAndSize[]>([]);
+
+  const handleNewKeyTilePos = (target: PosAndSize) => {
+    if (posList.find((pos) => pos.name === target.name) === undefined)
+      setPosList(posList.concat(target));
+  };
+
+  const getKeyPositionList = () => {
+    const fileName = "pos_and_size";
+    const file = JSON.stringify(posList);
+    const blob = new Blob([file], { type: "application/json" });
+
+    const href = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = href;
+    link.download = fileName + ".json";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  // Below is just for ONCE!
+  // useEffect(() => {
+  //   if (posList.length === NUM_KEY_LETTER) {
+  //     getKeyPositionList();
+  //   }
+  // });
+
   return (
     <Wrapper onClick={onClick}>
       <Column>
@@ -28,10 +58,11 @@ function Keyboard({
                 return (
                   <KeyTile
                     key={letter}
-                    onTypping={onTypping}
-                    letter={letter}
                     size={size}
+                    letter={letter}
                     allowTouchMargin={allowTouchMargin}
+                    onTypping={onTypping}
+                    handleNewKeyTilePos={handleNewKeyTilePos}
                   />
                 );
               })}
