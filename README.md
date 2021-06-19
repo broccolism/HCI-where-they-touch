@@ -53,4 +53,4 @@ On time, within a budget을 위해 최대한 구현 속도가 빠른 방법을 �
 
 #### 유저의 터치 기록 분포
 
-<img width="500" src=https://user-images.githubusercontent.com/45515332/122631584-92096e80-d107-11eb-867b-2321a5845cc9.png>
+<img width="600" src=https://user-images.githubusercontent.com/45515332/122631584-92096e80-d107-11eb-867b-2321a5845cc9.png>
